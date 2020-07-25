@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Creare lot</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="/app/lotadd.controller.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid" style="background-color: #1C843E">
+            <div class="navbar-header">
+                <a class="navbar-brand" style="color: white" href="/">Slanic Muscel</a>
+            </div>
+            <p class="navbar-text navbar-right" th:text="'Logat din ' + ${user}" style="margin-right: 10px; color: white">Nu sunteti logat!</p>
+        </div>
+    </nav>
+</header>
+<a onclick="history.back()" class="btn btn-secondary btn-lg active" role="button"  aria-pressed="true" style="color: black">< Inapoi</a>
+
+<div class="container" ng-app="app">
+
+    <h3>Creati un lot nou:</h3>
+    <button class="btn"><a href="/ad/produs" >Produse</a></button>
+
+    <div ng-controller="postcontroller">
+        <form class="form-horizontal" name="customerForm" ng-submit="submitForm()">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="lotCantitate">Cantitate:</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" name="cantitate" id="lotCantitate"
+                           placeholder="000" ng-model="cantitate"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="lotIdProdus">ID produs:</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" name="idprodus" id="lotIdProdus"
+                           placeholder="0" ng-model="idprodus"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="lotIdReteta">ID reteta:</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" name="idreteta" id="lotIdReteta"
+                           placeholder="0" ng-model="idreteta"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">Introduce</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="col-sm-offset-2 col-sm-10">
+            <p>{{postResultMessage}}</p>
+        </div>
+    </div>
+</div>
+<footer class="footer" style="position: fixed; bottom:0; background-color: #2C6B41; width: 100%">
+    <div class="container">
+        <p th:text="${#dates.format(data, 'dd MMM yyyy HH:mm')}" style="color: white; text-align: center" class="text-muted">Aplicatia este folosita offline!</p>
+    </div>
+</footer>
+</body>
+</html>

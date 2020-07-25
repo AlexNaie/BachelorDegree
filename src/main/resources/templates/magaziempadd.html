@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Intrare nou in magazia de materii prime</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="/app/magaziempadd.controller.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid" style="background-color: #1C843E">
+            <div class="navbar-header">
+                <a class="navbar-brand" style="color: white" href="/">Slanic Muscel</a>
+            </div>
+            <p class="navbar-text navbar-right" th:text="'Logat din ' + ${user}" style="margin-right: 10px; color: white;">Nu sunteti logat!</p>
+        </div>
+    </nav>
+</header>
+<a onclick="history.back()" class="btn btn-secondary btn-lg active" role="button"  aria-pressed="true" style="color: black">< Inapoi in magazie</a>
+
+<div class="container" ng-app="app">
+
+    <h3>Adauga o intrare noua in magazia de materii prime:</h3>
+
+    <div>
+        <form class="form-horizontal" ng-controller="postcontroller" name="customerForm" ng-submit="submitForm()">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="magazieMPUnitMas">Unitate de masura:</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" name="unitMas" id="magazieMPUnitMas"
+                           placeholder="100 grame" ng-model="unitMas"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="magazieMPDataAchiz">Data achizitie:</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" name="dataAchiz" id="magazieMPDataAchiz"
+                           placeholder="an-luna-zi" ng-model="dataAchiz"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="magazieMPFurnizor">Furnizor:</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" name="furnizor" id="magazieMPFurnizor"
+                           placeholder="productie proprie" ng-model="furnizor"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="magazieMPDocAchiz">Document achizitie:</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" name="docAchiz" id="magazieMPDocAchiz"
+                           placeholder="xxxxx" ng-model="docAchiz"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="magazieMPIdMateriePrima">ID materie prima:</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" name="materiePrima" id="magazieMPIdMateriePrima"
+                           placeholder="xxxxx" ng-model="materiePrima"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="magazieMPCant">Cantitate:</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" name="cant" id="magazieMPCant"
+                           placeholder="0000000" ng-model="cant"/>
+                </div>
+            </div>
+            <div class="form-group col-md-4" style="padding-left: 210px">
+                <label for="magazieMPUtilizat">Utilizat:</label>
+                <select class="form-control" id="magazieMPUtilizat" ng-model="utilizat">
+                    <option>Nu</option>
+                    <option>Da</option>
+                </select>
+            </div>
+
+                <div class="form-group" style="padding-left: 210px">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <input type="submit" value="Submit">
+                    </div>
+                </div>
+
+        </form>
+
+        <div class="col-sm-offset-2 col-sm-10">
+            <p>{{postResultMessage}}</p>
+        </div>
+    </div>
+</div>
+<footer class="footer" style="position: fixed; bottom:0; background-color: #2C6B41; width: 100%">
+    <div class="container">
+        <p th:text="${#dates.format(data, 'dd MMM yyyy HH:mm')}" style="color: white; text-align: center" class="text-muted">Aplicatia este folosita offline!</p>
+    </div>
+</footer>
+</body>
+</html>

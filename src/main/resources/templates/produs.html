@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Produse</title>
+    <link rel="stylesheet" href="../static/bootstrap.css" th:href="@{/bootstrap.css}" />
+    <script type="text/javascript" src="/static/angular.min.js" th:src="@{/angular.min.js}"></script>
+    <script type="text/javascript" src="/static/app/app.module.js" th:src="@{/app/app.module.js}"></script>
+    <script type="text/javascript" src="/static/app/produs.controller.js" th:src="@{/app/produs.controller.js}"></script>
+
+</head>
+<body ng-app="app" ng-controller="ProdusController as vm">
+<header>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid" style="background-color: #1C843E">
+            <div class="navbar-header">
+                <a class="navbar-brand" style="color: white" href="/">Slanic Muscel</a>
+            </div>
+            <p class="navbar-text navbar-right" th:text="'Logat din ' + ${user}" style="margin-right: 10px; color: white;">Nu sunteti logat!</p>
+        </div>
+    </nav>
+</header>
+<a onclick="history.back()" class="btn btn-secondary btn-lg active" role="button"  aria-pressed="true" style="color: black">< Inapoi</a>
+<h2>Toate produsele</h2>
+<div>
+    <div class="row">
+        <div class="col-lg-offset-2 col-lg-8">
+            <div class="table">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nume</th>
+                        <th>Valabilitate(Luni)</th>
+                        <th>Reteta</th>
+                        <th style="width: 90px"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="produs in vm.produs">
+                        <td>{{produs.idProdus}}</td>
+                        <td>{{produs.produsNume}}</td>
+                        <td>{{produs.produsValabilitateLuni}}</td>
+                        <td>{{produs.produsIdReteta}}</td>
+                        <th style="width: 90px"></th>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+<br>
+<footer class="footer" style="position: fixed; bottom:0; background-color: #2C6B41; width: 100%">
+    <div class="container">
+        <p th:text="${#dates.format(data, 'dd MMM yyyy HH:mm')}" style="color: white; text-align: center" class="text-muted">Aplicatia este folosita offline!</p>
+    </div>
+</footer>
+<br>
+</body>
+</html>

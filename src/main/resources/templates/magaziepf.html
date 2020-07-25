@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Magazie produse finite</title>
+    <link rel="stylesheet" href="../static/bootstrap.css" th:href="@{/bootstrap.css}" />
+    <script type="text/javascript" src="/static/angular.min.js" th:src="@{/angular.min.js}"></script>
+    <script type="text/javascript" src="/static/app/app.module.js" th:src="@{/app/app.module.js}"></script>
+    <script type="text/javascript" src="/static/app/magaziepf.controller.js" th:src="@{/app/magaziepf.controller.js}"></script>
+
+</head>
+<body ng-app="app" ng-controller="MagaziePFController as vm">
+<header>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid" style="background-color: #1C843E">
+            <div class="navbar-header">
+                <a class="navbar-brand" style="color: white" href="/">Slanic Muscel</a>
+            </div>
+            <p class="navbar-text navbar-right" th:text="'Logat din ' + ${user}" style="margin-right: 10px; color: white">Nu sunteti logat!</p>
+        </div>
+    </nav>
+</header>
+<a th:href="@{|/meniu/${dep}|}" class="btn btn-secondary btn-lg active" role="button"  aria-pressed="true" style="color: black">< Inapoi in meniu</a>
+
+<h2>Magazie Produse Finite</h2>
+<div>
+    <div class="row">
+        <div class="col-lg-offset-2 col-lg-8">
+            <button class="btn"><a th:href="@{|/${id}/lot|}" >Istoric loturi</a></button>
+            <button class="btn"><a th:href="@{|/${id}/produs|}" >Produse</a></button>
+            <div class="table">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Data productie</th>
+                        <th>ID Lot</th>
+                        <th>ID Produs</th>
+                        <th>ID Reteta</th>
+                        <th style="width: 90px"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="magaziePF in vm.magaziePF">
+                        <td>{{magaziePF.idMagaziePF}}</td>
+                        <td>{{magaziePF.magaziePFDataProd}}</td>
+                        <td>{{magaziePF.magaziePFIdLot}}</td>
+                        <td>{{magaziePF.magaziePFIdProdus}}</td>
+                        <td>{{magaziePF.magaziePFIdReteta}}</td>
+                        <th style="width: 90px"></th>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+<br>
+<footer class="footer" style="position: fixed; bottom:0; background-color: #2C6B41; width: 100%">
+    <div class="container">
+        <p th:text="${#dates.format(data, 'dd MMM yyyy HH:mm')}" style="color: white; text-align: center" class="text-muted">Aplicatia este folosita offline!</p>
+    </div>
+</footer>
+</body>
+</html>

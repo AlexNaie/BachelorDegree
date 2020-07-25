@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Verificare calitate materii prime</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script type="text/javascript" src="/static/app/verificaremp.controller.js" th:src="@{/app/verificaremp.controller.js}"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid" style="background-color: #1C843E">
+            <div class="navbar-header">
+                <a class="navbar-brand" style="color: white" href="/">Slanic Muscel</a>
+            </div>
+            <p class="navbar-text navbar-right" th:text="'Logat din ' + ${user}" style="margin-right: 10px; color: white">Nu sunteti logat!</p>
+        </div>
+    </nav>
+</header>
+<a href="/meniu/depproductie" class="btn btn-secondary btn-lg active" role="button"  aria-pressed="true" style="color: black">< Inapoi in meniu</a>
+
+<div style="padding-left: 50px">
+    <h3>Verificarea calitatii materiilor prime</h3>
+    <div class="custom-control custom-switch">
+        <input type="checkbox" onclick="EnableCheckbox(this)" class="custom-control-input" id="customSwitch1">
+        <label class="custom-control-label" for="customSwitch1">Materiile prime au fost primite</label>
+    </div>
+    <div class="custom-control custom-switch">
+        <input type="checkbox" disabled onclick="EnableSubmit(this)" class="custom-control-input" id="customSwitch2">
+        <label class="custom-control-label" for="customSwitch2">Materiile prime au fost verificate si au o calitate buna</label>
+    </div>
+</div>
+
+<div style="position: fixed; top: 800px; right: 15px;">
+    <button type="button" onclick="butConfirm()" id="next" disabled class="btn btn-success">Urmatorul pas</button>
+</div>
+<div class="progress" style="position: relative; top: 650px">
+    <div class="progress-bar progress-bar-success" role="progressbar" style="width: 40%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">40%</div>
+</div>
+<footer class="footer" style="position: fixed; bottom:0; background-color: #2C6B41; width: 100%">
+    <div class="container">
+        <p th:text="${#dates.format(data, 'dd MMM yyyy HH:mm')}" style="color: white; text-align: center" class="text-muted">Aplicatia este folosita offline!</p>
+    </div>
+</footer>
+</body>
+</html>

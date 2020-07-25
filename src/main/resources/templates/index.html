@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Pagina principala</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+    <link rel="stylesheet" href="../static/bootstrap.css" th:href="@{/bootstrap.css}" />
+    <script type="text/javascript" src="/static/angular.min.js" th:src="@{/angular.min.js}"></script>
+    <script type="text/javascript" src="/static/app/app.module.js" th:src="@{/app/app.module.js}"></script>
+    <script type="text/javascript" src="/static/app/index.controller.js" th:src="@{/app/index.controller.js}"></script>
+
+    <style>
+        .admin{
+            position: absolute;
+            top: 100px;
+            left: 100px;
+            width: 350px;
+            height: 700px;
+            border: 3px solid #73AD21;
+            text-align: center;
+        }
+        .depec{
+
+            position: absolute;
+            top: 100px;
+            left: 550px;
+            width: 350px;
+            height: 700px;
+            border: 3px solid #73AD21;
+            text-align: center;
+        }
+        .deppro{
+            position: absolute;
+            top: 100px;
+            left: 1000px;
+            width: 350px;
+            height: 700px;
+            border: 3px solid #73AD21;
+            text-align: center;
+        }
+        .depcom{
+            position: absolute;
+            top: 100px;
+            left: 1450px;
+            width: 350px;
+            height: 700px;
+            border: 3px solid #73AD21;
+            text-align: center;
+        }
+    </style>
+</head>
+<body ng-app="app">
+<header>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid" style="background-color: #1C843E">
+            <div class="navbar-header">
+                <a class="navbar-brand" style="color: white" href="/">Slanic Muscel</a>
+            </div>
+            <p class="navbar-text navbar-right" style="margin-right: 10px; color: white">Meniu principal</p>
+        </div>
+    </nav>
+</header>
+<div class="admin">
+    <div class="w3-card-4" style="width:350px">
+        <a th:onclick=getValueAd();>
+            <img src="https://i.imgur.com/mQNJvqe.png" alt="Administrator">
+            <div class="w3-container">
+                <h4><b>Administrator</b></h4>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="depec">
+    <div class="w3-card-4" style="width:350px">
+        <a th:onclick=getValueEc();>
+            <img src="https://i.imgur.com/2dwYiOT.png" alt="Departament economic">
+            <div class="w3-container">
+                <h4><b>Departament economic</b></h4>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="deppro">
+    <div class="w3-card-4" style="width:350px">
+        <a th:onclick=getValuePr();>
+            <img src="https://i.imgur.com/aa2lJrH.png" alt="Departament productie">
+            <div class="w3-container">
+                <h4><b>Departament productie</b></h4>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="depcom">
+    <div class="w3-card-4" style="width:350px">
+        <a th:onclick=getValueCo();>
+            <img src="https://i.imgur.com/i7CcnCZ.png" alt="Departament comercial">
+            <div class="w3-container">
+                <h4><b>Departament comercial</b></h4>
+            </div>
+        </a>
+    </div>
+</div>
+
+<footer class="footer" style="position: fixed; bottom:0; background-color: #2C6B41; width: 100%">
+    <div class="container">
+        <p th:text="${#dates.format(data, 'dd MMM yyyy HH:mm')}" style="color: white; text-align: center" class="text-muted">Aplicatia este folosita offline!</p>
+    </div>
+</footer>
+</body>
+</html>

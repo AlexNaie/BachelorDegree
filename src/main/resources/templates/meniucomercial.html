@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Meniu ADMINISTRATOR</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+    <link rel="stylesheet" href="../static/bootstrap.css" th:href="@{/bootstrap.css}" />
+    <script type="text/javascript" src="/static/angular.min.js" th:src="@{/angular.min.js}"></script>
+    <script type="text/javascript" src="/static/app/app.module.js" th:src="@{/app/app.module.js}"></script>
+    <style>
+        .LogedIn{
+            padding: 25px;
+        }
+        div.magaziemp {
+            position: absolute;
+            top: 300px;
+            right: 850px;
+            width: 256px;
+            height: 256px;
+            border: 3px solid #73AD21;
+        }
+        div.magaziepf {
+            position: absolute;
+            top: 300px;
+            right: 530px;
+            width: 256px;
+            height: 256px;
+            border: 3px solid #73AD21;
+        }
+    </style>
+</head>
+<body ng-app="app">
+<header>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid" style="background-color: #1C843E">
+            <div class="navbar-header">
+                <a class="navbar-brand" style="color: white" href="/">Slanic Muscel</a>
+            </div>
+            <p class="navbar-text navbar-right" th:text="'Logat din ' + ${user}" style="margin-right: 10px; color: white">Nu sunteti logat!</p>
+        </div>
+    </nav>
+</header>
+
+
+<div class="LogedIn">
+    <div class="w3-card-4" style="width:350px">
+        <a href="/">
+            <img src="https://i.imgur.com/i7CcnCZ.png" alt="Departament comercial">
+            <div class="w3-container">
+                <h4><b>Departamentul comercial</b></h4>
+                <p>Bine ai venit!</p>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="magaziemp">
+    <div class="w3-card-4" style="width:256px">
+        <a href="/co/magaziemp">
+            <img src="https://i.imgur.com/5WXvbSm.jpg" alt="Magazie Materii Prime">
+            <div class="w3-container">
+                <h4><b>Magazie Materii Prime</b></h4>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="magaziepf">
+    <div class="w3-card-4" style="width:256px">
+        <a href="/co/magaziepf">
+            <img src="https://i.imgur.com/6riiw0d.png" alt="Magazie Produse Finite">
+            <div class="w3-container">
+                <h4><b>Magazie Produse Finite</b></h4>
+            </div>
+        </a>
+    </div>
+</div>
+<footer class="footer" style="position: fixed; bottom:0; background-color: #2C6B41; width: 100%">
+    <div class="container">
+        <p th:text="${#dates.format(data, 'dd MMM yyyy HH:mm')}" style="color: white; text-align: center" class="text-muted">Aplicatia este folosita offline!</p>
+    </div>
+</footer>
+</body>
+</html>
