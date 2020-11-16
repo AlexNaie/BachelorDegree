@@ -1,4 +1,4 @@
-package slanicmuscel.licenta.models;
+package slanicmuscel.licenta.model;
 
 import java.sql.Date;
 

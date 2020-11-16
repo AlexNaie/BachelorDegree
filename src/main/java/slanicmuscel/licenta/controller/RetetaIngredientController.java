@@ -1,10 +1,10 @@
-package slanicmuscel.licenta.controllers;
+package slanicmuscel.licenta.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import slanicmuscel.licenta.models.RetetaIngredient;
+import slanicmuscel.licenta.model.RetetaIngredient;
 import slanicmuscel.licenta.repository.DatabaseClient;
 
 import java.sql.SQLException;
