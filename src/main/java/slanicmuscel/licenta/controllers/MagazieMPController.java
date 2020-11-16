@@ -1,8 +1,8 @@
-package slanicmuscel.licenta.controller;
+package slanicmuscel.licenta.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import slanicmuscel.licenta.model.MagazieMP;
+import slanicmuscel.licenta.models.MagazieMP;
 import slanicmuscel.licenta.repository.DatabaseClient;
 
 import java.sql.SQLException;

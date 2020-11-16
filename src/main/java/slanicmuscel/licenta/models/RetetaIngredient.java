@@ -1,4 +1,4 @@
-package slanicmuscel.licenta.model;
+package slanicmuscel.licenta.models;
 
 public class RetetaIngredient {
     private int idRetetaIngredient;
