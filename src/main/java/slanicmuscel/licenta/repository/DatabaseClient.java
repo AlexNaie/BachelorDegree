@@ -1,7 +1,7 @@
 package slanicmuscel.licenta.repository;
 
 import org.springframework.stereotype.Repository;
-import slanicmuscel.licenta.models.*;
+import slanicmuscel.licenta.model.*;
 
 import java.sql.DriverManager;
 import java.sql.*;
