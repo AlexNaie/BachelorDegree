@@ -1,4 +1,4 @@
-package slanicmuscel.licenta.Model;
+package slanicmuscel.licenta.models;
 
 import java.io.Serializable;
 

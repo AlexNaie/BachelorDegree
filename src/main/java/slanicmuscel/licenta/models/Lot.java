@@ -1,4 +1,5 @@
-package slanicmuscel.licenta.Model;
+package slanicmuscel.licenta.models;
+
 
 public class Lot {
 
@@ -7,9 +8,7 @@ public class Lot {
     private int lotIdProdus;
     private int lotIdReteta;
 
-    public Lot() {
-        //bin
-    }
+    public Lot() {}
 
     public int getIdLot() {
         return idLot;

@@ -1,4 +1,4 @@
-package slanicmuscel.licenta.Utils;
+package slanicmuscel.licenta.utils;
 
 public class Util {
     Integer idMateriePrima;

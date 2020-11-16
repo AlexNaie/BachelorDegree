@@ -1,2 +1,0 @@
-# BachelorDegree
- Database Administration App

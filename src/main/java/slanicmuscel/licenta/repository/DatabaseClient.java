@@ -1,8 +1,7 @@
-package slanicmuscel.licenta.bazadedate;
+package slanicmuscel.licenta.repository;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.web.context.annotation.ApplicationScope;
-import slanicmuscel.licenta.Model.*;
+import slanicmuscel.licenta.models.*;
 
 import java.sql.DriverManager;
 import java.sql.*;
@@ -44,29 +43,27 @@ public class DatabaseClient {
             ru.setRetetaUnitMasUnitate(rs.getString(2));
             list.add(ru);
         }
-
         return list;
     }
+
     public static void insertRetetaUnitMas(RetetaUnitMas retetaUnitMas) throws SQLException {
 
         PreparedStatement psCount = connection.prepareStatement("SELECT COUNT(idRetetaUnitMas) FROM RetetaUnitMas");
 
-        ResultSet rs1 = psCount.executeQuery();
+        ResultSet rs = psCount.executeQuery();
 
         int Count = 0;
 
-        while(rs1.next()) {
-            Count = rs1.getInt(1);
+        while(rs.next()) {
+            Count = rs.getInt(1);
         }
 
         PreparedStatement ps = connection.prepareStatement("INSERT INTO RetetaUnitMas(idRetetaUnitMas, RetetaUnitMasUnitate) VALUES (?, ?)");
 
         ps.setInt(1, Count);
-
         ps.setString(2, retetaUnitMas.getRetetaUnitMasUnitate());
 
         ps.executeUpdate();
-
     }
 
     //Reteta cantitate
@@ -74,15 +71,15 @@ public class DatabaseClient {
 
         ArrayList<RetetaCant> listRetetaCant = new ArrayList<>();
 
-        PreparedStatement ps2 = connection.prepareStatement("SELECT * FROM RetetaCant");
+        PreparedStatement ps = connection.prepareStatement("SELECT * FROM RetetaCant");
 
-        ResultSet rs2 = ps2.executeQuery();
+        ResultSet rs = ps.executeQuery();
 
-        while(rs2.next()) {
-            RetetaCant ru2 = new RetetaCant();
-            ru2.setIdRetetaCant(rs2.getInt(1));
-            ru2.setRetetaCantCantitate(rs2.getInt(2));
-            listRetetaCant.add(ru2);
+        while(rs.next()) {
+            RetetaCant ru = new RetetaCant();
+            ru.setIdRetetaCant(rs.getInt(1));
+            ru.setRetetaCantCantitate(rs.getInt(2));
+            listRetetaCant.add(ru);
         }
         return  listRetetaCant;
     }
@@ -93,15 +90,15 @@ public class DatabaseClient {
 
         ArrayList<MateriePrima> listMateriePrima = new ArrayList<>();
 
-        PreparedStatement ps3 = connection.prepareStatement("SELECT * FROM MateriePrima");
+        PreparedStatement ps = connection.prepareStatement("SELECT * FROM MateriePrima");
 
-        ResultSet rs3 = ps3.executeQuery();
+        ResultSet rs = ps.executeQuery();
 
-        while(rs3.next()) {
-            MateriePrima ru3 = new MateriePrima();
-            ru3.setIdMateriePrima(rs3.getInt(1));
-            ru3.setMateriePrimaNume(rs3.getString(2));
-            listMateriePrima.add(ru3);
+        while(rs.next()) {
+            MateriePrima ru = new MateriePrima();
+            ru.setIdMateriePrima(rs.getInt(1));
+            ru.setMateriePrimaNume(rs.getString(2));
+            listMateriePrima.add(ru);
         }
         return  listMateriePrima;
     }
@@ -110,18 +107,17 @@ public class DatabaseClient {
 
         PreparedStatement psCount = connection.prepareStatement("SELECT COUNT(idMateriePrima) FROM MateriePrima");
 
-        ResultSet rs1 = psCount.executeQuery();
+        ResultSet rs = psCount.executeQuery();
 
         int Count = 0;
 
-        while(rs1.next()) {
-            Count = rs1.getInt(1);
+        while(rs.next()) {
+            Count = rs.getInt(1);
         }
 
         PreparedStatement ps = connection.prepareStatement("INSERT INTO MateriePrima(idMateriePrima, MateriePrimaNume) VALUES (?, ?)");
 
         ps.setInt(1, Count);
-
         ps.setString(2, materiePrima.getMateriePrimaNume());
 
         ps.executeUpdate();
@@ -132,20 +128,20 @@ public class DatabaseClient {
 
         ArrayList<MagazieMP> listMagazieMp = new ArrayList<>();
 
-        PreparedStatement ps4 = connection.prepareStatement("SELECT * FROM MagazieMP");
+        PreparedStatement ps = connection.prepareStatement("SELECT * FROM MagazieMP");
 
-        ResultSet rs4 = ps4.executeQuery();
+        ResultSet rs = ps.executeQuery();
 
-        while(rs4.next()) {
-            MagazieMP ru4 = new MagazieMP();
-            ru4.setIdMagazieMP(rs4.getInt(1));
-            ru4.setMagazieMPUnitMas(rs4.getString(2));
-            ru4.setMagazieMPDataAchiz(rs4.getDate(3));
-            ru4.setMagazieMPFurnizor(rs4.getString(4));
-            ru4.setMagazieMPDocAchiz(rs4.getInt(5));
-            ru4.setMagazieMPIdMateriePrima(rs4.getInt(6));
-            ru4.setMagazieMPUtilizat(rs4.getString(7));
-            listMagazieMp.add(ru4);
+        while(rs.next()) {
+            MagazieMP ru = new MagazieMP();
+            ru.setIdMagazieMP(rs.getInt(1));
+            ru.setMagazieMPUnitMas(rs.getString(2));
+            ru.setMagazieMPDataAchiz(rs.getDate(3));
+            ru.setMagazieMPFurnizor(rs.getString(4));
+            ru.setMagazieMPDocAchiz(rs.getInt(5));
+            ru.setMagazieMPIdMateriePrima(rs.getInt(6));
+            ru.setMagazieMPUtilizat(rs.getString(7));
+            listMagazieMp.add(ru);
         }
         return listMagazieMp;
     }
@@ -173,7 +169,7 @@ public class DatabaseClient {
             ResultSet rs1 = psCount.executeQuery();
 
             int Count = 0;
-            int cant = magazieMP.getMagazieMPCant();
+            int quantity = magazieMP.getMagazieMPCant();
 
             while(rs1.next()) {
                 Count = rs1.getInt(1);
@@ -181,9 +177,9 @@ public class DatabaseClient {
 
                 PreparedStatement ps = connection.prepareStatement("INSERT INTO MagazieMP(idMagazieMP, magazieMPUnitMas, magazieMPDataAchiz, magazieMPFurnizor, magazieMPDocAchiz, magazieMPIdMateriePrima, magazieMPUtilizat) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
-                int x = Count + cant;
+                int newCount = Count + quantity;
 
-            for (int a = Count; a < x; a++) {
+            for (int a = Count; a < newCount; a++) {
 
                 ps.setInt(1, a);
                 ps.setString(2, magazieMP.getMagazieMPUnitMas());
@@ -192,11 +188,9 @@ public class DatabaseClient {
                 ps.setInt(5, magazieMP.getMagazieMPDocAchiz());
                 ps.setInt(6, magazieMP.getMagazieMPIdMateriePrima());
                 ps.setString(7, magazieMP.getMagazieMPUtilizat());
-//                ps.setInt(8, magazieMP.getMagazieMPCant());
 
                 ps.executeUpdate();
             }
-
         }
     }
 
@@ -205,21 +199,19 @@ public class DatabaseClient {
 
         ArrayList<Reteta> listReteta = new ArrayList<>();
 
-        PreparedStatement ps5 = connection.prepareStatement("SELECT * FROM Reteta");
+        PreparedStatement ps = connection.prepareStatement("SELECT * FROM Reteta");
 
-        ResultSet rs5 = ps5.executeQuery();
+        ResultSet rs = ps.executeQuery();
 
-        while(rs5.next()) {
-            Reteta ru5 = new Reteta();
-            ru5.setIdReteta(rs5.getInt(1));
-            ru5.setRetetaNume(rs5.getString(2));
-//            ru5.setRetetaIdRetetaUnitMas(rs5.getInt(3));
-//            ru5.setRetetaIdRetetaCant(rs5.getInt(4));
-//            ru5.setRetetaIdMateriePrima(rs5.getInt(5));
-            listReteta.add(ru5);
+        while(rs.next()) {
+            Reteta ru = new Reteta();
+            ru.setIdReteta(rs.getInt(1));
+            ru.setRetetaNume(rs.getString(2));
+            listReteta.add(ru);
         }
         return listReteta;
     }
+
     public static void insertReteta(Reteta reteta) throws SQLException {
 
         PreparedStatement psCount = connection.prepareStatement("SELECT COUNT(idReteta) FROM Reteta");
@@ -245,18 +237,18 @@ public class DatabaseClient {
 
         ArrayList<RetetaIngredient> listRetetaIngredient = new ArrayList<>();
 
-        PreparedStatement ps5 = connection.prepareStatement("SELECT * FROM RetetaIngredient");
+        PreparedStatement ps = connection.prepareStatement("SELECT * FROM RetetaIngredient");
 
-        ResultSet rs5 = ps5.executeQuery();
+        ResultSet rs = ps.executeQuery();
 
-        while(rs5.next()) {
-            RetetaIngredient ru5 = new RetetaIngredient();
-            ru5.setIdRetetaIngredient(rs5.getInt(1));
-            ru5.setRetetaIngredientIdRetetaCant(rs5.getInt(2));
-            ru5.setRetetaIngredientIdRetetaUnitMas(rs5.getInt(3));
-            ru5.setRetetaIngredientIdMateriePrima(rs5.getInt(4));
-            ru5.setRetetaIngredientIdReteta(rs5.getInt(5));
-            listRetetaIngredient.add(ru5);
+        while(rs.next()) {
+            RetetaIngredient ru = new RetetaIngredient();
+            ru.setIdRetetaIngredient(rs.getInt(1));
+            ru.setRetetaIngredientIdRetetaCant(rs.getInt(2));
+            ru.setRetetaIngredientIdRetetaUnitMas(rs.getInt(3));
+            ru.setRetetaIngredientIdMateriePrima(rs.getInt(4));
+            ru.setRetetaIngredientIdReteta(rs.getInt(5));
+            listRetetaIngredient.add(ru);
         }
         return listRetetaIngredient;
     }
@@ -264,12 +256,12 @@ public class DatabaseClient {
 
         PreparedStatement psCount = connection.prepareStatement("SELECT COUNT(idRetetaIngredient) FROM RetetaIngredient");
 
-        ResultSet rs1 = psCount.executeQuery();
+        ResultSet rs = psCount.executeQuery();
 
         int Count = 0;
 
-        while(rs1.next()) {
-            Count = rs1.getInt(1);
+        while(rs.next()) {
+            Count = rs.getInt(1);
         }
 
         PreparedStatement ps = connection.prepareStatement("INSERT INTO RetetaIngredient(idReteta, retetaIngredientIdRetetaCant, retetaIngredientIdRetetaUnitMas, retetaIngredientIdMateriePrima, retetaIngredientIdReteta) VALUES (?, ?, ?, ?, ?)");
@@ -287,16 +279,16 @@ public class DatabaseClient {
 
         ArrayList<Produs> listProdus = new ArrayList<>();
 
-        PreparedStatement ps6 = connection.prepareStatement("SELECT * FROM Produs");
+        PreparedStatement ps = connection.prepareStatement("SELECT * FROM Produs");
 
-        ResultSet rs6 = ps6.executeQuery();
+        ResultSet rs = ps.executeQuery();
 
-        while(rs6.next()) {
+        while(rs.next()) {
             Produs ru6 = new Produs();
-            ru6.setIdProdus(rs6.getInt(1));
-            ru6.setProdusNume(rs6.getString(2));
-            ru6.setProdusValabilitateLuni(rs6.getInt(3));
-            ru6.setProdusIdReteta(rs6.getInt(4));
+            ru6.setIdProdus(rs.getInt(1));
+            ru6.setProdusNume(rs.getString(2));
+            ru6.setProdusValabilitateLuni(rs.getInt(3));
+            ru6.setProdusIdReteta(rs.getInt(4));
             listProdus.add(ru6);
         }
         return listProdus;
@@ -306,22 +298,19 @@ public class DatabaseClient {
 
         PreparedStatement psCount = connection.prepareStatement("SELECT COUNT(idProdus) FROM Produs");
 
-        ResultSet rs1 = psCount.executeQuery();
+        ResultSet rs = psCount.executeQuery();
 
         int Count = 0;
 
-        while(rs1.next()) {
-            Count = rs1.getInt(1);
+        while(rs.next()) {
+            Count = rs.getInt(1);
         }
 
         PreparedStatement ps = connection.prepareStatement("INSERT INTO Produs(idProdus, produsNume, produsValabilitateLuni, produsIdReteta) VALUES (?, ?, ?, ?)");
 
         ps.setInt(1, Count);
-
         ps.setString(2, produs.getProdusNume());
-
         ps.setInt(3, produs.getProdusValabilitateLuni());
-
         ps.setInt(4, produs.getProdusIdReteta());
 
         ps.executeUpdate();
@@ -332,40 +321,38 @@ public class DatabaseClient {
 
         ArrayList<Lot> listLot = new ArrayList<>();
 
-        PreparedStatement ps7 = connection.prepareStatement("SELECT * FROM Lot");
+        PreparedStatement ps = connection.prepareStatement("SELECT * FROM Lot");
 
-        ResultSet rs7 = ps7.executeQuery();
+        ResultSet rs = ps.executeQuery();
 
-        while(rs7.next()) {
-            Lot ru7 = new Lot();
-            ru7.setIdLot(rs7.getInt(1));
-            ru7.setLotCantitate(rs7.getInt(2));
-            ru7.setLotIdProdus(rs7.getInt(3));
-            ru7.setLotIdReteta(rs7.getInt(4));
-            listLot.add(ru7);
+        while(rs.next()) {
+            Lot ru = new Lot();
+            ru.setIdLot(rs.getInt(1));
+            ru.setLotCantitate(rs.getInt(2));
+            ru.setLotIdProdus(rs.getInt(3));
+            ru.setLotIdReteta(rs.getInt(4));
+            listLot.add(ru);
         }
         return listLot;
     }
+
     public static void insertLot(Lot lot) throws SQLException {
 
         PreparedStatement psCount = connection.prepareStatement("SELECT COUNT(idLot) FROM Lot");
 
-        ResultSet rs1 = psCount.executeQuery();
+        ResultSet rs = psCount.executeQuery();
 
         int Count = 0;
 
-        while(rs1.next()) {
-            Count = rs1.getInt(1);
+        while(rs.next()) {
+            Count = rs.getInt(1);
         }
 
         PreparedStatement ps = connection.prepareStatement("INSERT INTO Lot(idLot, lotCantitate, lotIdProdus, lotIdReteta) VALUES (?, ?, ?, ?)");
 
         ps.setInt(1, Count);
-
         ps.setInt(2, lot.getLotCantitate());
-
         ps.setInt(3, lot.getLotIdProdus());
-
         ps.setInt(4, lot.getLotIdReteta());
 
         ps.executeUpdate();
@@ -376,21 +363,22 @@ public class DatabaseClient {
 
         ArrayList<MagaziePF> listMagaziePF = new ArrayList<>();
 
-        PreparedStatement ps8 = connection.prepareStatement("SELECT * FROM MagaziePF");
+        PreparedStatement ps = connection.prepareStatement("SELECT * FROM MagaziePF");
 
-        ResultSet rs8 = ps8.executeQuery();
+        ResultSet rs = ps.executeQuery();
 
-        while(rs8.next()) {
+        while(rs.next()) {
             MagaziePF ru8 = new MagaziePF();
-            ru8.setIdMagaziePF(rs8.getInt(1));
-            ru8.setMagaziePFDataProd(rs8.getDate(2));
-            ru8.setMagaziePFIdLot(rs8.getInt(3));
-            ru8.setMagaziePFIdProdus(rs8.getInt(4));
-            ru8.setMagaziePFIdReteta(rs8.getInt(5));
+            ru8.setIdMagaziePF(rs.getInt(1));
+            ru8.setMagaziePFDataProd(rs.getDate(2));
+            ru8.setMagaziePFIdLot(rs.getInt(3));
+            ru8.setMagaziePFIdProdus(rs.getInt(4));
+            ru8.setMagaziePFIdReteta(rs.getInt(5));
             listMagaziePF.add(ru8);
         }
         return listMagaziePF;
     }
+
     public static void insertMagaziePF(MagaziePF magaziePF) throws SQLException {
 
         //Validare fk
@@ -428,18 +416,17 @@ public class DatabaseClient {
             ps.setInt(5, magaziePF.getMagaziePFIdReteta());
 
             ps.executeUpdate();
-
         }
     }
+
     //Flux Lot -> Magazia produs finit (Selectare si schimbare Utilizat)
     public static ArrayList<MagazieMP> getUpdateUtilizat(int cantitate, int id) throws SQLException {
 
         ArrayList<MagazieMP> listUpdateUtilizat = new ArrayList<>();
 
-        PreparedStatement ps4 = connection.prepareStatement("UPDATE MagazieMP SET magazieMPUtilizat = 'Da' WHERE magazieMPIdMateriePrima = " + id + " AND magazieMPUtilizat = 'Nu' ORDER BY magazieMPDataAchiz LIMIT " + cantitate);
+        PreparedStatement ps = connection.prepareStatement("UPDATE MagazieMP SET magazieMPUtilizat = 'Da' WHERE magazieMPIdMateriePrima = " + id + " AND magazieMPUtilizat = 'Nu' ORDER BY magazieMPDataAchiz LIMIT " + cantitate);
 
-
-        ps4.executeUpdate();
+        ps.executeUpdate();
 
         return listUpdateUtilizat;
     }
